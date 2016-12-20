@@ -1,0 +1,17 @@
+all : cerchio
+
+netpbm.o : netpbm.c netpbm.h
+	gcc -c netpbm.c
+
+matrix.o: matrix.c matrix.h
+	gcc -c matrix.c
+
+cerchio: cerchio.c netpbm.o matrix.o 
+	gcc -o cerchio cerchio.c netpbm.o  matrix.o -lm
+
+test:
+	./cerchio > cerchio.ppm
+
+clean:
+	rm *.o cerchio
+
